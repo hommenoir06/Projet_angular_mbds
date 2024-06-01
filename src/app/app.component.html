@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <button *ngIf="showSidebar" mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>{{ titre }}</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container" *ngIf="showSidebar">
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-nav-list>
+      <button mat-button (click)="logout()">Déconnexion</button> <!-- Ajout du bouton de déconnexion -->
+      <a mat-list-item routerLink="/home">Home</a>
+      <a mat-list-item routerLink="/scrolling">Assignments</a>
+      <a mat-list-item routerLink="/add">Add Assignment</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <h1>
+      <nav>
+        <a routerLink="/home">{{ titre }}</a>
+      </nav>
+    </h1>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<router-outlet *ngIf="!showSidebar"></router-outlet>
